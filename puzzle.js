@@ -12,7 +12,7 @@ var loopTime = 10000*BSIZE*BSIZE;// the looping times of the gameTree search
 class Node {
     constructor(arr,uiArr, manha, parent, depth) {
         this.arr = arr;
-        this.uiArr =uiArr
+        this.uiArr = uiArr;
         this.manha = manha;
         this.child = [];
         this.parent = parent;
