@@ -205,7 +205,7 @@ class Board {
                     }
                     this.swapArr(cnode.arr,cnode.uiArr, arr[i], empty);
                     manha = this.manhattanG(cnode.arr) + cnode.depth+1;
-                    node = new Node(cnode.arr.slice(), manha, cnode, cnode.depth + 1);
+                    node = new Node(cnode.arr.slice(),this.uiBoard.slice(), manha, cnode, cnode.depth + 1);
                     this.swapArr(cnode.arr,cnode.uiArr, arr[i], empty);
                     cnode.child.push(node);
                     pq.add(node);
