@@ -7,15 +7,15 @@
         border: 1px solid black;
     }
 
-    table.board ,
-    .board tr,
-    .board td {
+    table.board, table.gboard ,
+    .board tr, .gboard tr,
+    .board td, .gboard td {
         border: 1px solid black;
         font-size: 20pt;
         text-align: center;
     }
 
-    .board td {
+    .board td, .gboard td {
         width: 40px;
         height: 40px;
     }
@@ -60,7 +60,7 @@
                 <tr><th>Goal State</th></tr>
                 <tr>
                     <td>
-                        <table id="goalGrid" class="board">
+                        <table id="goalGrid" class="gboard">
                             <tr><td></td><td></td><td></td></tr>
                             <tr><td></td><td></td><td></td></tr>
                             <tr><td></td><td></td><td></td></tr>
@@ -72,7 +72,7 @@
     </div>
 
 <pre>
-<input type="button" value="new 3x3 puzzle" onclick="newBoard(3)"><input type="button" value="Show Suggested Solution" onclick="drawAnswer()">
+<input type="button" value="new 3x3 puzzle" onclick="newBoard(3)"> <input type="button" value="Show Suggested Solution" onclick="drawAnswer()">
 <!--<input type="button" value="new 4x4 puzzle" onclick="newBoard(4)">
  Time limit:<input type="number" id="looptime" value="" placeholder="default:10000*size^2">
 <strong style="color:red;">getting 4x4 suggested solution may 
