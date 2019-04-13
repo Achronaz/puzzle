@@ -153,6 +153,18 @@ class Board {
         }
         g.innerHTML = tr;
     }
+    drawUiBoard() {
+        var g = document.getElementById("goalGrid");
+        var tr = "";
+        for (let i = 0; i < BSIZE; i++) {
+            tr += "<tr id='r" + i + "'>"
+            for (let j = 0; j < BSIZE; j++) {
+                tr += "<td id='c" + j + "'>" + (this.uiGoal[i * BSIZE + j] === 0 ? '' : this.uiGoal[i * BSIZE + j]) + "</td>";
+            }
+            tr += "</tr>";
+        }
+        g.innerHTML = tr;
+    }
     gameTree() {
         count = 0;
         var empty = this.board.indexOf(0);
@@ -209,7 +221,7 @@ class Board {
                     }
                     this.swapArr(cnode.arr,cnode.uiArr, arr[i], empty);
                     manha = this.manhattanG(cnode.arr) + cnode.depth+1;
-                    node = new Node(cnode.arr.slice(),this.uiBoard.slice(), manha, cnode, cnode.depth + 1);
+                    node = new Node(cnode.arr.slice(),cnode.uiArr.slice(), manha, cnode, cnode.depth + 1);
                     this.swapArr(cnode.arr,cnode.uiArr, arr[i], empty);
                     cnode.child.push(node);
                     pq.add(node);
