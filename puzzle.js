@@ -75,6 +75,10 @@ class Board {
         for (let i = 0; i < this.num*2; i++) {
             a = Math.floor(Math.random() * (this.num + 1));
             b = Math.floor(Math.random() * (this.num + 1));
+            if(this.uiGoal[a]==0)
+                continue;
+            else if(this.uiGoal[b]==0)
+                continue;
             var temp = this.uiGoal[a];
             this.uiGoal[a] = this.uiGoal[b];
             this.uiGoal[b] = temp; 
