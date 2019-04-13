@@ -153,6 +153,18 @@ class Board {
         }
         g.innerHTML = tr;
     }
+    drawUiBoard() {
+        var g = document.getElementById("goalGrid");
+        var tr = "";
+        for (let i = 0; i < BSIZE; i++) {
+            tr += "<tr id='r" + i + "'>"
+            for (let j = 0; j < BSIZE; j++) {
+                tr += "<td id='c" + j + "'>" + (this.uiGoal[i * BSIZE + j] === 0 ? '' : this.uiGoal[i * BSIZE + j]) + "</td>";
+            }
+            tr += "</tr>";
+        }
+        g.innerHTML = tr;
+    }
     gameTree() {
         count = 0;
         var empty = this.board.indexOf(0);

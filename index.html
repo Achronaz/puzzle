@@ -60,22 +60,10 @@
                 <tr><th>Goal State</th></tr>
                 <tr>
                     <td>
-                        <table id="grid" class="board">
-                            <tr>
-                                <td><input type="number" id="gs_00" max="9" min="0" placeholder="1"></td>
-                                <td><input type="number" id="gs_01" max="9" min="0" placeholder="2"></td>
-                                <td><input type="number" id="gs_02" max="9" min="0" placeholder="3"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="number" id="gs_10" max="9" min="0" placeholder="4"></td>
-                                <td><input type="number" id="gs_11" max="9" min="0" placeholder="5"></td>
-                                <td><input type="number" id="gs_12" max="9" min="0" placeholder="6"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="number" id="gs_20" max="9" min="0" placeholder="7"></td>
-                                <td><input type="number" id="gs_21" max="9" min="0" placeholder="8"></td>
-                                <td><input type="number" id="gs_22" max="9" min="0" placeholder="0" ></td>
-                            </tr>
+                        <table id="goalGrid" class="board">
+                            <tr><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td></tr>
+                            <tr><td></td><td></td><td></td></tr>
                         </table>
                     </td>
                 </tr>
@@ -103,6 +91,7 @@ take a long time and exceed the default loop time limit.</strong>-->
         table = new Board(BSIZE);
         table.randPermin();
         table.drawGrid();
+        table.drawUiBoard();
         possibleMoveArr = possibleMove(BSIZE);
         document.getElementById('solution').innerHTML = '';
     }
