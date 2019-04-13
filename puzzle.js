@@ -1,4 +1,4 @@
-//global variable setting 
+//global variable setting asd
 var count;
 var pq;
 var root;
