@@ -170,7 +170,7 @@ class Board {
             if (arr[i] != -1) {
                 this.swap(empty, arr[i]);
                 manha = this.manhattanG(this.board.slice()) + depth+1;
-                node = new Node(this.board.slice(),this.uiBoard.slice(), manha, root, root.depth + 1)
+                node = new Node(this.board.slice(),this.uiBoard.slice(), manha, root, root.depth + 1);
                 root.child.push(node);
                 pq.add(node);
                 this.swap(empty, arr[i]);
