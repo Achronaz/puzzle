@@ -10,8 +10,9 @@ var MAX = BSIZE * BSIZE - 1;
 //However for loop is not asyn, so the ui will stucked during looping utill the solution is found or the loopTime is met.
 var loopTime = 10000*BSIZE*BSIZE;// the looping times of the gameTree search
 class Node {
-    constructor(arr, manha, parent, depth) {
+    constructor(arr,uiArr, manha, parent, depth) {
         this.arr = arr;
+        this.uiArr =uiArr
         this.manha = manha;
         this.child = [];
         this.parent = parent;
@@ -71,25 +72,28 @@ class Board {
     }
     randPermin() {
         var a, b; // index of the array
-        for (let i = 0; i < this.num; i++) {
+        for (let i = 0; i < this.num*2; i++) {
             a = Math.floor(Math.random() * (this.num + 1));
             b = Math.floor(Math.random() * (this.num + 1));
             var temp = this.uiGoal[a];
             this.uiGoal[a] = this.uiGoal[b];
-            this.uiGoal[b] = temp;
-            
+            this.uiGoal[b] = temp; 
         }
+        this.uiBoard = this.uiGoal.slice();//randomize the uiBoard by the above code
         do {
-            for (let i = 0; i < this.num; i++) {
+            for (let i = 0; i < this.num*2; i++) {
                 a = Math.floor(Math.random() * (this.num + 1));
                 b = Math.floor(Math.random() * (this.num + 1));
                 var temp = this.board[a];
                 this.board[a] = this.board[b];
                 this.board[b] = temp;
+                //for uiBoard
+                temp = this.uiBoard[a];
+                this.uiBoard[a] = this.uiBoard[b];
+                this.uiBoard[b] = temp;
             }
             //console.log(this.board);
         } while (!this.isSolvable());
-        this.uiBoard = this.board.slice();
         //this.board = [0,1,3,4,2,5,7,8,6]; simple case
         //this.board = [8,6,7,2,5,4,3,0,1]//hard 8 puzzle
         //this.board = [1,2,3,4,5,6,8,7,0];//false case
@@ -151,7 +155,7 @@ class Board {
         var manha, node;
         var depth = 0;
         manha = this.manhattanG(this.board);
-        root = new Node(this.board.slice(), manha, null, depth);
+        root = new Node(this.board.slice(),this.uiBoard.slice(), manha, null, depth);
         pq = new PQ();
         if (this.goalState(root.arr)) {
             return root;
@@ -166,7 +170,7 @@ class Board {
             if (arr[i] != -1) {
                 this.swap(empty, arr[i]);
                 manha = this.manhattanG(this.board.slice()) + depth+1;
-                node = new Node(this.board.slice(), manha, root, root.depth + 1)
+                node = new Node(this.board.slice(),this.uiBoard.slice(), manha, root, root.depth + 1)
                 root.child.push(node);
                 pq.add(node);
                 this.swap(empty, arr[i]);
@@ -199,10 +203,10 @@ class Board {
                         //console.log(arr[i],cnode.parent.arr.indexOf(0));
                         continue;
                     }
-                    this.swapArr(cnode.arr, arr[i], empty);
+                    this.swapArr(cnode.arr,cnode.uiArr, arr[i], empty);
                     manha = this.manhattanG(cnode.arr) + cnode.depth+1;
                     node = new Node(cnode.arr.slice(), manha, cnode, cnode.depth + 1);
-                    this.swapArr(cnode.arr, arr[i], empty);
+                    this.swapArr(cnode.arr,cnode.uiArr, arr[i], empty);
                     cnode.child.push(node);
                     pq.add(node);
                     count++;
@@ -269,15 +273,22 @@ class Board {
         var y2 = index % BSIZE;
         return this.different(x1, x2) + this.different(y1, y2);
     }
-    swapArr(arr, a, b) {
+    swapArr(arr,uiArr, a, b) {
         var temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
+        temp = uiArr[a];
+        uiArr[a] = uiArr[b];
+        uiArr[b] = temp;
     }
     swap(a, b) {
         var temp = this.board[a];
         this.board[a] = this.board[b];
         this.board[b] = temp;
+        //for uiBoard
+        temp = this.uiBoard[a];
+        this.uiBoard[a] = this.uiBoard[b];
+        this.uiBoard[b] = temp;
     }
     different(a, b) {
         if (a > b)
