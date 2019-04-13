@@ -126,7 +126,7 @@ take a long time and exceed the default loop time limit.</strong>-->
 
     function move(index) {
         for (var i = 0; i < possibleMoveArr[index].length; i++) {
-            if (table.board[possibleMoveArr[index][i]] === 0) {
+            if (table.board[possibleMoveArr[index][i]] === 0) {//table.uiBoard[possibleMoveArr[index][i]] === table.uiBoard[table.board.indexof(0)]
                 table.swap(possibleMoveArr[index][i], index);
                 table.drawGrid();
                 if (table.isGoal()) alert('This is goal state.');
