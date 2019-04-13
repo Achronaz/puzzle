@@ -134,7 +134,7 @@ take a long time and exceed the default loop time limit.</strong>-->
             let a = ans;
             var step = []; //complete step of the 8 puzzle
             while (a.parent != null) {
-                step.unshift(a.arr);
+                step.unshift(a.uiArr);
                 a = a.parent;
             }
             var el = document.getElementById('solution');
