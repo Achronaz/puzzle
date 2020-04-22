@@ -1,1 +1,1 @@
-[Puzzle Demo](https://achronaz.github.io/puzzle/)
+[Puzzle Demo](https://achronaz.github.io/cs3334/)
